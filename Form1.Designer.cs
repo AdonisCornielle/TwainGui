@@ -38,6 +38,7 @@ namespace ScanninControl
             this.btnSelectPath = new System.Windows.Forms.Button();
             this.txtBatchName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -89,11 +90,12 @@ namespace ScanninControl
             // 
             // nessScanning1
             // 
-            this.nessScanning1.Location = new System.Drawing.Point(1, 50);
+            this.nessScanning1.AutoSize = true;
+            this.nessScanning1.Location = new System.Drawing.Point(1, 89);
             this.nessScanning1.Margin = new System.Windows.Forms.Padding(5);
             this.nessScanning1.Name = "nessScanning1";
             this.nessScanning1.ShowUI = true;
-            this.nessScanning1.Size = new System.Drawing.Size(933, 492);
+            this.nessScanning1.Size = new System.Drawing.Size(1275, 858);
             this.nessScanning1.TabIndex = 1;
             this.nessScanning1.Load += new System.EventHandler(this.nessScanning1_Load);
             // 
@@ -118,7 +120,7 @@ namespace ScanninControl
             // 
             // txtBatchName
             // 
-            this.txtBatchName.Location = new System.Drawing.Point(647, 58);
+            this.txtBatchName.Location = new System.Drawing.Point(448, 47);
             this.txtBatchName.Name = "txtBatchName";
             this.txtBatchName.Size = new System.Drawing.Size(160, 22);
             this.txtBatchName.TabIndex = 48;
@@ -127,19 +129,32 @@ namespace ScanninControl
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(813, 61);
+            this.label1.Location = new System.Drawing.Point(614, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(121, 17);
             this.label1.TabIndex = 49;
             this.label1.Text = "Nombre del Batch";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // button5
+            // 
+            this.button5.Enabled = false;
+            this.button5.Location = new System.Drawing.Point(16, 47);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(100, 31);
+            this.button5.TabIndex = 50;
+            this.button5.Text = "Eliminar";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(944, 543);
+            this.ClientSize = new System.Drawing.Size(1274, 985);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBatchName);
             this.Controls.Add(this.txtPath);
@@ -170,5 +185,6 @@ namespace ScanninControl
         private System.Windows.Forms.Button btnSelectPath;
         private System.Windows.Forms.TextBox txtBatchName;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button5;
     }
 }

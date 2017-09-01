@@ -152,11 +152,13 @@ namespace ScanninControl
                 {
                     ListViewItem lstItem = new ListViewItem();
                     lstItem.ImageIndex = j;
-                    lstItem.Text = string.Format("Page {0}", j + 1);
+                    lstItem.Text = string.Format("Pagina {0}", j + 1);
                     Control.ImagesListView.Items.Add(lstItem);
                 }
             }
         }
+
+
 
         private Image resizeImage(Image imgToResize, Size size)
         {
@@ -189,6 +191,35 @@ namespace ScanninControl
         }
 
 
+
+        public void borrarItem()
+        {
+            //31/08/2017
+            //Evalua si la item seleccionado en en listview es mayor que cero
+            if (Control.ImagesListView.SelectedItems.Count > 0)
+            {
+                //MessageBox que para confirmar si desea eliminar la imagen
+                var confirmation = MessageBox.Show("Desea eliminar la imagen Seleccionado?", "Eliminar Imagen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //Si la respuesta es correcta, entonces recorre el arreglo para eliminar el item
+                if (confirmation == DialogResult.Yes)
+                {
+
+                    for (int i = Control.ImagesListView.SelectedItems.Count - 1; i >= 0; i--)
+                    {
+                        //Almacena en la variable itm cual fue el item seleccionado
+                        ListViewItem itm = Control.ImagesListView.SelectedItems[i];
+                        //Elimina el thumbnail del listview
+                        Control.ImagesListView.Items[itm.Index].Remove();
+                        //Elimina la imagen seleccionada dentro del imagelist
+                        Control.ImagesList.RemoveAt(index: i);
+                    }
+                }
+                else
+                    MessageBox.Show("Ningún Item Seleccionado");
+
+            }
+        }
+
         private void HandledException(ScannerException scannerException)
         {
             MessageBox.Show(scannerException.ToString());
@@ -196,3 +227,4 @@ namespace ScanninControl
         #endregion
     }
 }
+

@@ -132,6 +132,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ScannerAdapterBase.cs" />
+    <Compile Include="Twain\TwainDefs.cs" />
+    <Compile Include="Twain\TwainLib.cs" />
+    <Compile Include="Twain\TwainScannerAdapter.cs" />
+    <Compile Include="Twain\TwainScannerException.cs" />
     <Compile Include="Wia\WiaScannerException.cs" />
     <Compile Include="Wia\WiaScannerAdapter.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -169,6 +173,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

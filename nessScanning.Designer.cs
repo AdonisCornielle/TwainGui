@@ -39,9 +39,10 @@ namespace ScanninControl
             // 
             // tblLayoutPanel
             // 
-            this.tblLayoutPanel.ColumnCount = 2;
-            this.tblLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.32905F));
-            this.tblLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.67095F));
+            this.tblLayoutPanel.ColumnCount = 3;
+            this.tblLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.95935F));
+            this.tblLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.04065F));
+            this.tblLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 194F));
             this.tblLayoutPanel.Controls.Add(this.imagesListView, 0, 0);
             this.tblLayoutPanel.Controls.Add(this.previewPictureBox, 1, 0);
             this.tblLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -61,7 +62,7 @@ namespace ScanninControl
             this.imagesListView.Location = new System.Drawing.Point(4, 4);
             this.imagesListView.Margin = new System.Windows.Forms.Padding(4);
             this.imagesListView.Name = "imagesListView";
-            this.imagesListView.Size = new System.Drawing.Size(191, 484);
+            this.imagesListView.Size = new System.Drawing.Size(250, 484);
             this.imagesListView.TabIndex = 5;
             this.imagesListView.UseCompatibleStateImageBehavior = false;
             this.imagesListView.SelectedIndexChanged += new System.EventHandler(this.imagesListView_SelectedIndexChanged);
@@ -69,17 +70,18 @@ namespace ScanninControl
             // previewPictureBox
             // 
             this.previewPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.previewPictureBox.Location = new System.Drawing.Point(203, 4);
+            this.previewPictureBox.Location = new System.Drawing.Point(262, 4);
             this.previewPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.previewPictureBox.Name = "previewPictureBox";
-            this.previewPictureBox.Size = new System.Drawing.Size(726, 484);
+            this.previewPictureBox.Size = new System.Drawing.Size(472, 484);
             this.previewPictureBox.TabIndex = 6;
             this.previewPictureBox.TabStop = false;
+            this.previewPictureBox.Click += new System.EventHandler(this.previewPictureBox_Click);
             // 
             // imagesTumbList
             // 
-            this.imagesTumbList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imagesTumbList.ImageSize = new System.Drawing.Size(16, 16);
+            this.imagesTumbList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imagesTumbList.ImageSize = new System.Drawing.Size(64, 64);
             this.imagesTumbList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // nessScanning

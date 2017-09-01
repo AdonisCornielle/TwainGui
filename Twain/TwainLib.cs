@@ -50,20 +50,30 @@ namespace ScanninControl
 
         public void Init(IntPtr hwndp)
         {
-            Finish();
-            TwRC rc = DSMparent(appid, IntPtr.Zero, TwDG.Control, TwDAT.Parent, TwMSG.OpenDSM, ref hwndp);
-            if (rc == TwRC.Success)
+            
+            try
             {
-                rc = DSMident(appid, IntPtr.Zero, TwDG.Control, TwDAT.Identity, TwMSG.GetDefault, srcds);
+                Finish();
+                TwRC rc = DSMparent(appid, IntPtr.Zero, TwDG.Control, TwDAT.Parent, TwMSG.OpenDSM, ref hwndp);
                 if (rc == TwRC.Success)
                 {
-                    hwnd = hwndp;
-                }
-                else
-                {
-                    rc = DSMparent(appid, IntPtr.Zero, TwDG.Control, TwDAT.Parent, TwMSG.CloseDSM, ref hwndp);
+                    rc = DSMident(appid, IntPtr.Zero, TwDG.Control, TwDAT.Identity, TwMSG.GetDefault, srcds);
+                    if (rc == TwRC.Success)
+                    {
+                        hwnd = hwndp;
+                    }
+                    else
+                    {
+                        rc = DSMparent(appid, IntPtr.Zero, TwDG.Control, TwDAT.Parent, TwMSG.CloseDSM, ref hwndp);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error: Conecte el Dispositivo de Escaneo. \n" + ex.Message);
+            }
+            
         }
 
         public bool Select()
@@ -95,6 +105,7 @@ namespace ScanninControl
                     BuildScannerException(srcds, TwainScannerError.ScannerNotAvailable);
                 }
             }
+            
             rc = DSMident(appid, IntPtr.Zero, TwDG.Control, TwDAT.Identity, TwMSG.OpenDS, srcds);
             if (rc != TwRC.Success)
             {

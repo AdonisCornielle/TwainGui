@@ -35,6 +35,11 @@ namespace ScanninControl
             m_Controller.Clear();
         }
 
+        public void borrarItem()
+        {
+            m_Controller.borrarItem();
+        }
+
         public void SelectDevice()
         {
             m_Controller.SelectDevice();
@@ -83,6 +88,11 @@ namespace ScanninControl
         #endregion
 
         private void imagesListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void previewPictureBox_Click(object sender, EventArgs e)
         {
 
         }

@@ -241,7 +241,7 @@ namespace ScanninControl
 
         private WIA.ImageFile ScanImage(CommonDialogClass wiaCommonDialog, WIA.ImageFile imgFile, WIA.Item item)
         {
-            imgFile = (ImageFile)wiaCommonDialog.ShowTransfer(item, ImageFormat.Jpeg.Guid.ToString("B")/* wiaFormatJPEG*/, false);
+            imgFile = (ImageFile)wiaCommonDialog.ShowTransfer(item, ImageFormat.Tiff.Guid.ToString("B")/* wiaFormatTiff*/, false);
 
             byte[] buffer = (byte[])imgFile.FileData.get_BinaryData();
             MemoryStream ms = new MemoryStream(buffer);
@@ -256,7 +256,7 @@ namespace ScanninControl
             try
             {
                 bool hasMorePages = false;
-                //determine if there are any more pages waiting
+                //determina si hay mas de una pagina en espera
                 Property documentHandlingSelect = null;
                 Property documentHandlingStatus = null;
                 foreach (Property prop in WiaDev.Properties)

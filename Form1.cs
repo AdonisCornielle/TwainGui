@@ -36,7 +36,7 @@ namespace ScanninControl
                 string fileName = "";
                     
                 fileName = txtBatchName.Text;
-                string path = Path.Combine(folder, String.Format(fileName + " {0}.jpg", i));
+                string path = Path.Combine(folder, String.Format(fileName + " {0}.tiff", i));
                 img.Save(path);
                 i++;
             }
@@ -63,6 +63,7 @@ namespace ScanninControl
                 button2.Enabled = true;
                 button3.Enabled = true;
                 button4.Enabled = false;
+                button5.Enabled = true;
             }
         }
 
@@ -95,6 +96,11 @@ namespace ScanninControl
         private void txtBatchName_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            nessScanning1.borrarItem();
         }
     }
 }
