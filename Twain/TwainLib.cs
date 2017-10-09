@@ -66,6 +66,7 @@ namespace ScanninControl
                     {
                         rc = DSMparent(appid, IntPtr.Zero, TwDG.Control, TwDAT.Parent, TwMSG.CloseDSM, ref hwndp);
                     }
+                    
                 }
             }
             catch (Exception ex)
@@ -95,41 +96,53 @@ namespace ScanninControl
 
         public void Acquire(bool showUI)
         {
+
             TwRC rc;
             CloseSrc();
-            if (appid.Id == IntPtr.Zero)
-            {
-                Init(hwnd);
+            
+           
                 if (appid.Id == IntPtr.Zero)
+                {
+                    Init(hwnd);
+                    if (appid.Id == IntPtr.Zero)
+                    {
+                        BuildScannerException(srcds, TwainScannerError.ScannerNotAvailable);
+                    }
+
+                }
+            
+            
+                rc = DSMident(appid, IntPtr.Zero, TwDG.Control, TwDAT.Identity, TwMSG.OpenDS, srcds);
+
+
+
+
+                //
+                if (rc != TwRC.Success)
                 {
                     BuildScannerException(srcds, TwainScannerError.ScannerNotAvailable);
                 }
-            }
+
+                TwCapability cap = new TwCapability(TwCap.XferCount, 1);
+                rc = DScap(appid, srcds, TwDG.Control, TwDAT.Capability, TwMSG.Set, cap);
+                if (rc != TwRC.Success)
+                {
+                    CloseSrc();
+                    BuildScannerException(srcds, TwainScannerError.Other);
+                }
+
+                TwUserInterface guif = new TwUserInterface();
+                guif.ShowUI = Convert.ToInt16(showUI);
+                guif.ModalUI = 1;
+                guif.ParentHand = hwnd;
+                rc = DSuserif(appid, srcds, TwDG.Control, TwDAT.UserInterface, TwMSG.EnableDS, guif);
+                if (rc != TwRC.Success)
+                {
+                    CloseSrc();
+                    BuildScannerException(srcds, TwainScannerError.Other);
+                }
             
-            rc = DSMident(appid, IntPtr.Zero, TwDG.Control, TwDAT.Identity, TwMSG.OpenDS, srcds);
-            if (rc != TwRC.Success)
-            {
-                BuildScannerException(srcds, TwainScannerError.ScannerNotAvailable);
-            }
-
-            TwCapability cap = new TwCapability(TwCap.XferCount, 1);
-            rc = DScap(appid, srcds, TwDG.Control, TwDAT.Capability, TwMSG.Set, cap);
-            if (rc != TwRC.Success)
-            {
-                CloseSrc();
-                BuildScannerException(srcds, TwainScannerError.Other);
-            }
-
-            TwUserInterface guif = new TwUserInterface();
-            guif.ShowUI = Convert.ToInt16(showUI);
-            guif.ModalUI = 1;
-            guif.ParentHand = hwnd;
-            rc = DSuserif(appid, srcds, TwDG.Control, TwDAT.UserInterface, TwMSG.EnableDS, guif);
-            if (rc != TwRC.Success)
-            {
-                CloseSrc();
-                BuildScannerException(srcds, TwainScannerError.Other);
-            }
+            
         }
 
         public ArrayList TransferPictures()

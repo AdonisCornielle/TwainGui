@@ -10,7 +10,7 @@ namespace ScanninControl
         [STAThread]
         static void Main()
         {
-            Application.Run( new Form1());
+            Application.Run( new MDIParent1());
         }
 
     } // class MainFrame

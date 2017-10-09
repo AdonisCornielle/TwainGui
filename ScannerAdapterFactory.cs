@@ -17,7 +17,7 @@ namespace ScanninControl
             lock (locker)
             {
                 bool isWiaDeviceSelected = false;
-                bool isTwainDeviceSelected = false;
+                //bool isTwainDeviceSelected = false;
 
                 if (m_ScannerAdapterBase != null)
                 {
@@ -35,14 +35,14 @@ namespace ScanninControl
                         return m_ScannerAdapterBase;
                     }
 
-                    //Checks TWAIN Devices
-                    m_ScannerAdapterBase = new TwainScannerAdapter();
-                    m_ScannerAdapterBase.InitAdapter(control, messageFilter, handle);
-                    isTwainDeviceSelected = m_ScannerAdapterBase.SelectDevice();
-                    if (isTwainDeviceSelected)
-                    {
-                        return m_ScannerAdapterBase;
-                    }
+                    ////Checks TWAIN Devices
+                    //m_ScannerAdapterBase = new TwainScannerAdapter();
+                    //m_ScannerAdapterBase.InitAdapter(control, messageFilter, handle);
+                    //isTwainDeviceSelected = m_ScannerAdapterBase.SelectDevice();
+                    //if (isTwainDeviceSelected)
+                    //{
+                    //    return m_ScannerAdapterBase;
+                    //}
                 }
                 catch (ScannerException ex)
                 {

@@ -7,6 +7,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using WIA;
+using System.Threading;
 
 namespace ScanninControl
 {
@@ -69,7 +70,7 @@ namespace ScanninControl
             Device device = null;
             try
             {
-                device = wiaCommonDialog.ShowSelectDevice(WiaDeviceType.ScannerDeviceType, false, false);
+                device = wiaCommonDialog.ShowSelectDevice(WiaDeviceType.ScannerDeviceType, true, true);
                 if (device != null)
                 {
                     m_DeviceID = device.DeviceID;
@@ -211,8 +212,18 @@ namespace ScanninControl
                     infoprop = info.Properties;
 
                     //connect to scanner
-                    wiaDev = info.Connect();
+                    try
+                    {
+                        Thread.Sleep(500);
+                        wiaDev = info.Connect();
 
+                    }
+                    catch (Exception)
+                    {
+                        Thread.Sleep(500);
+                        //throw;
+                    }
+                    
                     break;
                 }
             }
@@ -224,7 +235,15 @@ namespace ScanninControl
             WIA.Items items = null;
             if (showUI)
             {
-                items = wiaCommonDialog.ShowSelectItems(WiaDev, WiaImageIntent.TextIntent, WiaImageBias.MinimizeSize, false, true, false);
+                try
+                {
+                    items = wiaCommonDialog.ShowSelectItems(WiaDev, WiaImageIntent.TextIntent, WiaImageBias.MinimizeSize, false, true, false);
+
+                }
+                catch (Exception)
+                {
+                    
+                }
             }
             else
             {

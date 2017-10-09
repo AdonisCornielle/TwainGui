@@ -39,12 +39,15 @@ namespace ScanninControl
             this.txtBatchName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(124, 15);
+            this.button1.Location = new System.Drawing.Point(124, 39);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
@@ -56,7 +59,7 @@ namespace ScanninControl
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(232, 15);
+            this.button2.Location = new System.Drawing.Point(232, 39);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
@@ -68,7 +71,7 @@ namespace ScanninControl
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(340, 15);
+            this.button3.Location = new System.Drawing.Point(340, 39);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 28);
@@ -79,7 +82,7 @@ namespace ScanninControl
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(16, 15);
+            this.button4.Location = new System.Drawing.Point(16, 39);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 28);
@@ -91,17 +94,17 @@ namespace ScanninControl
             // nessScanning1
             // 
             this.nessScanning1.AutoSize = true;
-            this.nessScanning1.Location = new System.Drawing.Point(1, 89);
+            this.nessScanning1.Location = new System.Drawing.Point(3, 132);
             this.nessScanning1.Margin = new System.Windows.Forms.Padding(5);
             this.nessScanning1.Name = "nessScanning1";
             this.nessScanning1.ShowUI = true;
-            this.nessScanning1.Size = new System.Drawing.Size(1275, 858);
+            this.nessScanning1.Size = new System.Drawing.Size(1275, 749);
             this.nessScanning1.TabIndex = 1;
             this.nessScanning1.Load += new System.EventHandler(this.nessScanning1_Load);
             // 
             // txtPath
             // 
-            this.txtPath.Location = new System.Drawing.Point(448, 19);
+            this.txtPath.Location = new System.Drawing.Point(448, 39);
             this.txtPath.Margin = new System.Windows.Forms.Padding(4);
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(346, 22);
@@ -109,7 +112,7 @@ namespace ScanninControl
             // 
             // btnSelectPath
             // 
-            this.btnSelectPath.Location = new System.Drawing.Point(802, 12);
+            this.btnSelectPath.Location = new System.Drawing.Point(802, 35);
             this.btnSelectPath.Margin = new System.Windows.Forms.Padding(4);
             this.btnSelectPath.Name = "btnSelectPath";
             this.btnSelectPath.Size = new System.Drawing.Size(135, 36);
@@ -120,7 +123,7 @@ namespace ScanninControl
             // 
             // txtBatchName
             // 
-            this.txtBatchName.Location = new System.Drawing.Point(448, 47);
+            this.txtBatchName.Location = new System.Drawing.Point(448, 81);
             this.txtBatchName.Name = "txtBatchName";
             this.txtBatchName.Size = new System.Drawing.Size(160, 22);
             this.txtBatchName.TabIndex = 48;
@@ -129,7 +132,7 @@ namespace ScanninControl
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(614, 50);
+            this.label1.Location = new System.Drawing.Point(614, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(121, 17);
             this.label1.TabIndex = 49;
@@ -139,7 +142,7 @@ namespace ScanninControl
             // button5
             // 
             this.button5.Enabled = false;
-            this.button5.Location = new System.Drawing.Point(16, 47);
+            this.button5.Location = new System.Drawing.Point(16, 81);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(100, 31);
             this.button5.TabIndex = 50;
@@ -147,13 +150,35 @@ namespace ScanninControl
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripButton});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1274, 27);
+            this.toolStrip1.TabIndex = 51;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // openToolStripButton
+            // 
+            this.openToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
+            this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Black;
+            this.openToolStripButton.Name = "openToolStripButton";
+            this.openToolStripButton.Size = new System.Drawing.Size(24, 24);
+            this.openToolStripButton.Text = "Abrir";
+            this.openToolStripButton.Click += new System.EventHandler(this.openToolStripButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1274, 985);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBatchName);
@@ -169,6 +194,8 @@ namespace ScanninControl
             this.Name = "Form1";
             this.Text = "ESCANER CSI-CPE";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,5 +213,7 @@ namespace ScanninControl
         private System.Windows.Forms.TextBox txtBatchName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton openToolStripButton;
     }
 }

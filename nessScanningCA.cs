@@ -5,11 +5,15 @@ using System.Collections;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 
 namespace ScanninControl
 {
     public class nessScanningCA
     {
+       
+
+
         #region Constants
         private const int C_THUMB_WIDTH = 71;
         private const int C_THUMB_HEIGTH = 100;
@@ -35,7 +39,9 @@ namespace ScanninControl
 
         public nessScanningCA()
         {
+           
         }
+
 
         #region Initialization
         public bool InitScanner()
@@ -55,9 +61,19 @@ namespace ScanninControl
         public void InitEvents()
         {
             Control.ImagesListView.SelectedIndexChanged += new EventHandler(ImagesListView_SelectedIndexChanged);
+            
         }
-        #endregion
 
+
+       
+
+        #endregion
+        /// 
+    
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void Clear()
         {
             if (m_ScannerAdapterBase.ImagesList != null)
@@ -80,6 +96,7 @@ namespace ScanninControl
                     HandledException(ex);
                 }
                 LoadThumbs();
+                loadIndexa();
             }
         }
 
@@ -116,18 +133,34 @@ namespace ScanninControl
         #region Events
         private void ImagesListView_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (Control.ImagesListView.SelectedIndices.Count > 0)
             {
                 int index = Control.ImagesListView.SelectedIndices[0];
+                
+
                 Image i = resizeImage(m_ScannerAdapterBase.ImagesList[index], new Size(Control.PreviewPictureBox.Width, Control.PreviewPictureBox.Height));
 
                 Control.PreviewPictureBox.Image = i;
+
+                
+                Control.DataGridView1.Rows[index].Selected = true;
+       
             }
             else
             {
+                
                 Control.PreviewPictureBox.Image = null;
+               
             }
         }
+
+        private void DataGridView1_VisibleChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+
         #endregion
 
         #region Private Methods
@@ -151,13 +184,43 @@ namespace ScanninControl
                 for (int j = 0; j < Control.ImagesTumbList.Images.Count; j++)
                 {
                     ListViewItem lstItem = new ListViewItem();
+                    
                     lstItem.ImageIndex = j;
                     lstItem.Text = string.Format("Pagina {0}", j + 1);
                     Control.ImagesListView.Items.Add(lstItem);
+
+
+                    
                 }
             }
         }
 
+        public void loadIndexa()
+        {
+            if (Control.ImagesListView.Items.Count > 0)
+            {
+                try
+                {
+                    for (int i = 0; i < Control.ImagesList.Count; i++)
+                    {
+                        Control.DataGridView1.Rows.Add(string.Format("imagen {0}", i + 1));
+
+
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+            
+
+               
+            
+
+           
+        }
 
 
         private Image resizeImage(Image imgToResize, Size size)
@@ -190,7 +253,24 @@ namespace ScanninControl
             return (Image)b;
         }
 
+        public void exportarTXT()
+        {
+            //filename = 
+            //var files = Directory.GetFiles(txtPath.Text, "*.txt");
+            //TextWriter writer = new StreamWriter(@"C:\folder\Text.txt");
+            //for (int i = 0; i < Control.DataGridView1.Rows.Count - 1; i++)
+            //{
+            //    for (int j = 0; j < Control.DataGridView1.Columns.Count; j++)
+            //    {
+            //        writer.Write("\t" + Control.DataGridView1.Rows[i].Cells[j].Value.ToString() + "\t" + "|");
+            //    }
+            //    writer.WriteLine("");
+            //    writer.WriteLine("-----------------------------------------------------");
+            //}
+            //writer.Close();
+            //MessageBox.Show("Data Exportada");
 
+        }
 
         public void borrarItem()
         {
@@ -199,7 +279,7 @@ namespace ScanninControl
             if (Control.ImagesListView.SelectedItems.Count > 0)
             {
                 //MessageBox que para confirmar si desea eliminar la imagen
-                var confirmation = MessageBox.Show("Desea eliminar la imagen Seleccionado?", "Eliminar Imagen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var confirmation = MessageBox.Show("Desea eliminar la imagen Seleccionada?", "Eliminar Imagen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 //Si la respuesta es correcta, entonces recorre el arreglo para eliminar el item
                 if (confirmation == DialogResult.Yes)
                 {
@@ -208,16 +288,33 @@ namespace ScanninControl
                     {
                         //Almacena en la variable itm cual fue el item seleccionado
                         ListViewItem itm = Control.ImagesListView.SelectedItems[i];
+                        
                         //Elimina el thumbnail del listview
                         Control.ImagesListView.Items[itm.Index].Remove();
                         //Elimina la imagen seleccionada dentro del imagelist
                         Control.ImagesList.RemoveAt(index: i);
+                        
+                        
                     }
+
+                    //for (int j = Control.DataGridView1.SelectedRows.Count -1; j >= 0; j--)
+                    //{
+                    //    Control.DataGridView1.Rows.RemoveAt(index: j);
+
+                    //}
                 }
                 else
                     MessageBox.Show("Ningún Item Seleccionado");
 
             }
+        }
+
+        public void borrarRow()
+        {
+            int rowIndex = Control.DataGridView1.SelectedRows[0].Index;
+            Control.DataGridView1.Rows.RemoveAt(rowIndex);
+
+
         }
 
         private void HandledException(ScannerException scannerException)
